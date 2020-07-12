@@ -23,7 +23,7 @@ app.use(bodyparser.json());
         res.send("Hello")
         });
 
-
+ //DB Connection 
     app.post("/db", async (req,res) => {
         try {
             const post = new data();
