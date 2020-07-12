@@ -2,11 +2,11 @@ const express = require("express");
 const moment = require("moment");
 const app = express();
 require("./controller/mongo")
-const db = require("./model/db")
+require("./model/db")
 const bodyparser = require("body-parser"); //Middle Ware
 const mongoose = require("mongoose")
 
-const data = mongoose.model("data");
+const Data = mongoose.model("data");
 
 //middle ware
 app.use(bodyparser.json());
@@ -26,12 +26,16 @@ app.use(bodyparser.json());
  //DB Connection 
     app.post("/db", async (req,res) => {
         try {
-            const post = new data();
-            post.username = req.params.username;
-            post.user_email = req.params.user_email;
-    
-            await post.save()
-            res.send(post); 
+            const data = new Data();
+            console.log(data);
+            data.name = req.body.name;
+            data.email = req.body.email;
+
+            console.log(data.name);
+            console.log(data.email)
+
+            await data.save()
+            res.send(data); 
         } 
         catch (error) {
                 console.log("Error Message is :",error);
